@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Njeri Kinuthia — Artist & Educator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --gold:        #C9963A;
+      --gold-light:  #E8C96A;
+      --gold-pale:   #F5DFA0;
+      --ink:         #0D0A04;
+      --papyrus:     #F2E8D0;
+      --sand:        #D4B483;
+      --lapis:       #1C2B4A;
+      --lapis-deep:  #0E1826;
+      --copper:      #8B4513;
+      --scarlet:     #7C1010;
+      --cream:       #FBF4E4;
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ink);
+      color: var(--papyrus);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold-light); text-decoration: none; transition: color .25s; }
+    a:hover { color: var(--gold-pale); }
+
+    /* ─── DECORATIVE GLYPHS ──────────────────────────────────── */
+    .glyph-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .glyph-divider::before,
+    .glyph-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .glyph-divider span {
+      color: var(--gold);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .9rem 3rem;
+      background: rgba(13,10,4,.92);
+      border-bottom: 1px solid rgba(201,150,58,.35);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: .25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+      background: var(--lapis-deep);
+    }
+
+    /* Sun disk background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center,
+        rgba(201,150,58,.18) 0%,
+        rgba(201,150,58,.08) 40%,
+        transparent 70%);
+    }
+
+    /* Egyptian border top */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    }
+
+    /* Column decorations */
+    .hero-columns {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .hero-column {
+      width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: .25;
+    }
+    .hero-column-shaft {
+      width: 18px;
+      height: 220px;
+      background: linear-gradient(to right, rgba(201,150,58,.4), rgba(232,201,106,.7), rgba(201,150,58,.4));
+    }
+    .hero-column-cap {
+      width: 40px;
+      height: 14px;
+      background: linear-gradient(to bottom, rgba(232,201,106,.9), rgba(201,150,58,.6));
+      clip-path: polygon(0 100%, 10% 0, 90% 0, 100% 100%);
+      margin-bottom: 2px;
+    }
+    .hero-column-base {
+      width: 50px;
+      height: 10px;
+      background: linear-gradient(to top, rgba(232,201,106,.9), rgba(201,150,58,.6));
+    }
+
+    .hero-eyeof {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+      filter: drop-shadow(0 0 20px rgba(201,150,58,.6));
+      position: relative;
+    }
+
+    .hero-pretitle {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    h1.hero-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--gold-pale);
+      text-shadow: 0 0 60px rgba(201,150,58,.4), 0 2px 8px rgba(0,0,0,.8);
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.85rem, 2vw, 1.1rem);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 1.2rem;
+    }
+
+    .hero-contact {
+      margin-top: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: .85rem;
+      color: var(--sand);
+    }
+    .hero-contact span {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--gold);
+      opacity: .7;
+      animation: bobScroll 2.5s ease-in-out infinite;
+    }
+    .hero-scroll span { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; }
+    .hero-scroll-arrow { font-size: 1.2rem; }
+
+    @keyframes bobScroll {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── SECTION WRAPPER ────────────────────────────────────── */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-bg-alt {
+      background: rgba(28,43,74,.25);
+    }
+
+    .section-full {
+      padding: 5rem 2rem;
+    }
+
+    /* ─── SECTION HEADING ────────────────────────────────────── */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-heading .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .section-heading h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 600;
+      color: var(--gold-pale);
+      letter-spacing: .05em;
+    }
+    .section-heading .subtitle {
+      color: var(--sand);
+      font-style: italic;
+      margin-top: .5rem;
+      font-size: .95rem;
+    }
+
+    /* ─── HIEROGLYPH BORDER ──────────────────────────────────── */
+    .hiero-border {
+      height: 32px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 8px,
+        rgba(201,150,58,.15) 8px, rgba(201,150,58,.15) 10px
+      );
+      border-top: 1px solid rgba(201,150,58,.3);
+      border-bottom: 1px solid rgba(201,150,58,.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .hiero-border::before {
+      content: '𓂀 𓃭 𓅓 𓆃 𓇯 𓈖 𓉐 𓊃 𓋴 𓌀 𓍢 𓎛 𓏏 𓐍 𓂀 𓃭 𓅓 𓆃 𓇯 𓈖 𓉐 𓊃 𓋴 𓌀 𓍢 𓎛 𓏏 𓐍';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: rgba(201,150,58,.45);
+      font-size: .9rem;
+      letter-spacing: .5em;
+      white-space: nowrap;
+      animation: scrollGlyphs 30s linear infinite;
+    }
+    @keyframes scrollGlyphs {
+      from { transform: translateY(-50%) translateX(0); }
+      to   { transform: translateY(-50%) translateX(-50%); }
+    }
+
+    /* ─── EDUCATION ──────────────────────────────────────────── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: linear-gradient(135deg, rgba(201,150,58,.06), rgba(28,43,74,.4));
+      border: 1px solid rgba(201,150,58,.25);
+      border-top: 3px solid var(--gold);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-card::after {
+      content: '𓊹';
+      position: absolute;
+      bottom: -10px;
+      right: 10px;
+      font-size: 4rem;
+      color: rgba(201,150,58,.06);
+      pointer-events: none;
+    }
+    .edu-degree {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: .4rem;
+    }
+    .edu-school {
+      color: var(--sand);
+      font-size: .9rem;
+    }
+    .edu-year {
+      display: inline-block;
+      margin-top: .8rem;
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      border: 1px solid rgba(201,150,58,.4);
+      padding: .2rem .7rem;
+    }
+
+    /* ─── TEACHING ───────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,150,58,.1));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: '𓂀';
+      position: absolute;
+      left: -2.9rem;
+      top: .1rem;
+      font-size: 1rem;
+      color: var(--gold);
+      width: 1.8rem;
+      text-align: center;
+    }
+    .timeline-period {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+    .timeline-role {
+      font-size: 1rem;
+      color: var(--papyrus);
+      font-weight: 500;
+    }
+    .timeline-place {
+      font-size: .9rem;
+      color: var(--sand);
+      font-style: italic;
+    }
+
+    /* ─── EXHIBITIONS ────────────────────────────────────────── */
+    .exhibit-year-block {
+      margin-bottom: 2.5rem;
+    }
+    .exhibit-year {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2rem;
+      color: rgba(201,150,58,.2);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .exhibit-item {
+      border-left: 2px solid rgba(201,150,58,.2);
+      padding: .6rem 0 .6rem 1.2rem;
+      margin-bottom: .8rem;
+      transition: border-color .25s;
+    }
+    .exhibit-item:hover {
+      border-color: var(--gold);
+    }
+    .exhibit-title {
+      color: var(--papyrus);
+      font-size: 1rem;
+    }
+    .exhibit-meta {
+      font-size: .85rem;
+      color: var(--sand);
+      font-style: italic;
+    }
+    .exhibit-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      padding: .15rem .5rem;
+      border: 1px solid rgba(201,150,58,.4);
+      color: var(--gold);
+      margin-left: .5rem;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+
+    /* ─── TABS ───────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid rgba(201,150,58,.25);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: var(--sand);
+      padding: .8rem 1.8rem;
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      transition: color .25s;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform .25s;
+    }
+    .tab-btn.active { color: var(--gold-light); }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-btn:hover { color: var(--gold-pale); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── AWARDS ─────────────────────────────────────────────── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .award-card {
+      background: linear-gradient(135deg, rgba(201,150,58,.05), rgba(14,24,38,.6));
+      border: 1px solid rgba(201,150,58,.18);
+      padding: 1.4rem 1.6rem;
+      position: relative;
+      transition: border-color .25s, transform .2s;
+    }
+    .award-card:hover {
+      border-color: rgba(201,150,58,.5);
+      transform: translateY(-2px);
+    }
+    .award-icon {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .award-name {
+      font-family: 'Cinzel', serif;
+      font-size: .85rem;
+      color: var(--gold-light);
+      margin-bottom: .3rem;
+    }
+    .award-date {
+      font-size: .8rem;
+      color: var(--sand);
+    }
+    .award-amount {
+      display: inline-block;
+      margin-top: .5rem;
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      color: var(--gold);
+      border: 1px solid rgba(201,150,58,.4);
+      padding: .15rem .5rem;
+    }
+
+    /* ─── BIBLIOGRAPHY ───────────────────────────────────────── */
+    .bib-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(201,150,58,.1);
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      gap: 1rem;
+      align-start: start;
+    }
+    .bib-year {
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      color: var(--gold);
+      padding-top: .1rem;
+    }
+    .bib-text {
+      font-size: .95rem;
+      color: var(--papyrus);
+    }
+    .bib-text em { color: var(--sand); }
+
+    /* ─── MEMBERSHIPS & COLLECTIONS ─────────────────────────── */
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+    }
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border: 1px solid rgba(201,150,58,.35);
+      color: var(--sand);
+      transition: border-color .25s, color .25s;
+    }
+    .tag:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* ─── VOLUNTEER ──────────────────────────────────────────── */
+    .volunteer-list {
+      list-style: none;
+    }
+    .volunteer-list li {
+      padding: .7rem 0 .7rem 2rem;
+      border-bottom: 1px solid rgba(201,150,58,.08);
+      position: relative;
+      font-size: .95rem;
+      color: var(--papyrus);
+    }
+    .volunteer-list li::before {
+      content: '𓆃';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .volunteer-list .vol-date {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+    }
+
+    /* ─── TWO-COL ────────────────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 640px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CONTACT / FOOTER ───────────────────────────────────── */
+    #contact {
+      text-align: center;
+      padding: 5rem 2rem 6rem;
+      background: var(--lapis-deep);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '𓊹';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20rem;
+      color: rgba(201,150,58,.03);
+      pointer-events: none;
+    }
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      border: 1px solid rgba(201,150,58,.35);
+      padding: .7rem 1.8rem;
+      transition: all .25s;
+    }
+    .contact-link:hover {
+      color: var(--gold-pale);
+      border-color: var(--gold);
+      background: rgba(201,150,58,.08);
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(201,150,58,.15);
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      color: rgba(212,180,131,.4);
+    }
+
+    /* ─── TALK ITEM ──────────────────────────────────────────── */
+    .talk-item {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: .8rem;
+      padding: .8rem 0;
+      border-bottom: 1px solid rgba(201,150,58,.1);
+    }
+    .talk-date {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .05em;
+      padding-top: .1rem;
+    }
+    .talk-desc {
+      font-size: .95rem;
+      color: var(--papyrus);
+    }
+    .talk-desc em { color: var(--sand); font-style: italic; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: .8rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: .6rem; }
+      .section { padding: 3rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .hero-contact { flex-direction: column; gap: .5rem; }
+    }
+
+    /* ─── SCROLL ANIMATIONS ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── NOTABLE ────────────────────────────────────────────── */
+    .notable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+    .notable-card {
+      background: rgba(201,150,58,.05);
+      border: 1px solid rgba(201,150,58,.2);
+      padding: 1.2rem 1.4rem;
+      font-size: .9rem;
+      color: var(--papyrus);
+      position: relative;
+    }
+    .notable-card::before {
+      content: '𓏏';
+      position: absolute;
+      top: .7rem;
+      right: .9rem;
+      font-size: 1.2rem;
+      color: rgba(201,150,58,.3);
+    }
+    .notable-label {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-logo">NK</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#exhibitions">Exhibitions</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#talks">Talks</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-columns">
+    <div class="hero-column">
+      <div class="hero-column-cap"></div>
+      <div class="hero-column-shaft"></div>
+      <div class="hero-column-base"></div>
+    </div>
+    <div class="hero-column">
+      <div class="hero-column-cap"></div>
+      <div class="hero-column-shaft"></div>
+      <div class="hero-column-base"></div>
+    </div>
+  </div>
+
+  <div class="hero-eyeof">𓂀</div>
+  <p class="hero-pretitle">Artist &bull; Educator &bull; Curator</p>
+  <h1 class="hero-name">Njeri Kinuthia</h1>
+  <p class="hero-subtitle">MFA &nbsp;·&nbsp; University of Central Florida</p>
+  <div class="hero-contact">
+    <span>📍 Orlando, FL</span>
+    <span>✉ njerikinuthia@ucf.edu</span>
+    <span>🌐 njerikinuthia.com</span>
+    <span>📞 631-966-1321</span>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <span class="hero-scroll-arrow">𓂋</span>
+  </div>
+</section>
+
+<div class="hiero-border"></div>
+
+<!-- ─── ABOUT / EDUCATION ────────────────────────────────────── -->
+<div id="about" class="section-full">
+  <div class="section">
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓅓 &nbsp; Origins &nbsp; 𓅓</p>
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <p class="edu-degree">MFA — Emerging Media, Studio Art and Design</p>
+        <p class="edu-school">University of Central Florida &nbsp;|&nbsp; Orlando, FL</p>
+        <span class="edu-year">2024</span>
+      </div>
+      <div class="edu-card">
+        <p class="edu-degree">B.S. — Fashion Design and Marketing</p>
+        <p class="edu-school">Machakos University &nbsp;|&nbsp; Kenya</p>
+        <span class="edu-year">2019</span>
+      </div>
+    </div>
+
+    <div class="glyph-divider reveal"><span>𓊹</span></div>
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓁹 &nbsp; Teaching &nbsp; 𓁹</p>
+      <h2>Academic Appointments</h2>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <p class="timeline-period">2025 – Present</p>
+        <p class="timeline-role">Assistant Professor, Art and Design</p>
+        <p class="timeline-place">University of Central Florida, Orlando, FL</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-period">Summer 2025 &nbsp;(Jul – Aug)</p>
+        <p class="timeline-role">Mixed Media Instructor</p>
+        <p class="timeline-place">Art and History Museums, Maitland</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-period">Fall 2024 – Spring 2025</p>
+        <p class="timeline-role">Full-time Visiting Lecturer</p>
+        <p class="timeline-place">University of Central Florida, Orlando, FL</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-period">Spring 2024</p>
+        <p class="timeline-role">Instructor of Record, Graduate Teaching Associate</p>
+        <p class="timeline-place">University of Central Florida</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-period">Fall 2023</p>
+        <p class="timeline-role">Graduate Teaching Assistant</p>
+        <p class="timeline-place">University of Central Florida, Orlando, FL</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── EXHIBITIONS ───────────────────────────────────────────── -->
+<div id="exhibitions" class="section-full section-bg-alt">
+  <div class="section">
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓇯 &nbsp; Works &nbsp; 𓇯</p>
+      <h2>Exhibitions</h2>
+      <p class="subtitle">Solo & Group shows across three continents</p>
+    </div>
+
+    <div class="tab-bar reveal">
+      <button class="tab-btn active" data-tab="solo">Solo Exhibitions</button>
+      <button class="tab-btn" data-tab="group">Group Exhibitions</button>
+    </div>
+
+    <!-- SOLO -->
+    <div class="tab-panel active" id="tab-solo">
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2027</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Untitled <span class="exhibit-badge">Forthcoming</span> <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">The Frank Gallery, Miami, FL &nbsp;·&nbsp; Summer</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2026</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Body of Dissent <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Revolu Gallery, Mexico City &nbsp;·&nbsp; February</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">ArtCube Public Installation <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Interstruct Design + Build, Parramore, FL &nbsp;·&nbsp; Jan – Apr</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2025</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Mwacha Mila Ni Si Mtumwa <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Arts Centre Sarasota, Sarasota, FL &nbsp;·&nbsp; Oct – Nov</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Je, Niko Huru? (Am I Free?) <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Albin Polasek Museum, Winter Park, FL &nbsp;·&nbsp; May – Aug</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Ukombozi: Reclaiming Place and Self <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">HCC 221 Art Gallery, Hillsborough Community College, Tampa, FL &nbsp;·&nbsp; Jan – Apr</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2024</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Art in the Garden Festival <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Cosgrove's Residence, Winter Park, FL &nbsp;·&nbsp; March</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2023</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Leso: WovenWomen <span class="exhibit-badge">Invitational</span></p>
+          <p class="exhibit-meta">Snap Gallery, Orlando, FL &nbsp;·&nbsp; Sept – Nov</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP -->
+    <div class="tab-panel" id="tab-group">
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2026</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Ushirikiano</p>
+          <p class="exhibit-meta">A Perfect Union Art Gallery, Ocoee, FL &nbsp;·&nbsp; February</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2025</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Compartmentalize</p>
+          <p class="exhibit-meta">Lakewood Cultural Centre, Colorado &nbsp;·&nbsp; May – Aug</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Next-Now, FATE National Juried Exhibition</p>
+          <p class="exhibit-meta">Gillespie Gallery, George Mason University, VA &nbsp;·&nbsp; Mar – Apr</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Gillespie Invitational</p>
+          <p class="exhibit-meta">Casselberry Arts Centre, FL &nbsp;·&nbsp; Feb – Mar</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">6000 Circle Exhibition</p>
+          <p class="exhibit-meta">Granucci Gallery, Center for the Arts, Grass Valley, CA &nbsp;·&nbsp; Mar – Apr</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2024</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Florida Prize in Contemporary Art <span class="exhibit-badge">Catalogue</span></p>
+          <p class="exhibit-meta">Orlando Museum of Art, FL &nbsp;·&nbsp; Jun – Aug &nbsp;·&nbsp; <em>Nominated as 1 of 10 most progressive artists in Florida by OMA Chief Curator</em></p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">UCF Faculty Exhibition</p>
+          <p class="exhibit-meta">UCF Art Gallery, Orlando, FL &nbsp;·&nbsp; Oct – Nov</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Embracing Our Roots</p>
+          <p class="exhibit-meta">Honey Badger Gallery, Brooklyn, NY &nbsp;·&nbsp; August</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Meeting the Moment</p>
+          <p class="exhibit-meta">Aiken Centre for the Arts, South Carolina &nbsp;·&nbsp; Sept – Oct</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">12th Annual ArtFields Regional Juried Show</p>
+          <p class="exhibit-meta">Lake City, SC &nbsp;·&nbsp; Apr – May</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Black Artistry Showcase</p>
+          <p class="exhibit-meta">KPMG Lakehouse, Lake Nona &nbsp;·&nbsp; February</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Head Space — UCF MFA Thesis Group Show</p>
+          <p class="exhibit-meta">UCF Art Gallery, Orlando, FL &nbsp;·&nbsp; Feb – Mar</p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2023</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Eclectic Knights</p>
+          <p class="exhibit-meta">Orlando Museum of Art, FL &nbsp;·&nbsp; September</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Platform Showcase <span class="exhibit-badge">50 of 300 accepted</span></p>
+          <p class="exhibit-meta">Orlando Museum of Art, FL &nbsp;·&nbsp; July</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">City Arts Three-Person MFA Exhibition</p>
+          <p class="exhibit-meta">City Arts Gallery, Downtown Orlando, FL &nbsp;·&nbsp; July &nbsp;·&nbsp; <em>Sponsored by Walt Disney Impact Grant</em></p>
+        </div>
+      </div>
+
+      <div class="exhibit-year-block reveal">
+        <div class="exhibit-year">2020 – 2019</div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Portrayals II</p>
+          <p class="exhibit-meta">Roweinay Gallery, Roslyn Riviera Mall, Nairobi &nbsp;·&nbsp; September 2020</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Sanaa Safi</p>
+          <p class="exhibit-meta">Michael Joseph's Centre, Safaricom House, Nairobi &nbsp;·&nbsp; Sept – Oct 2019</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Safari ya Sanaa</p>
+          <p class="exhibit-meta">Garborg Centre, Stavanger, Norway &nbsp;·&nbsp; July 2019</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">Dancing Savannah</p>
+          <p class="exhibit-meta">Tsavo National Park, Voi, Kenya &nbsp;·&nbsp; July 2019</p>
+        </div>
+        <div class="exhibit-item">
+          <p class="exhibit-title">My Tribe is Art</p>
+          <p class="exhibit-meta">Karen Village Arts Centre, Nairobi, Kenya &nbsp;·&nbsp; March 2019</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── AWARDS ────────────────────────────────────────────────── -->
+<div id="awards" class="section-full">
+  <div class="section">
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓏏 &nbsp; Honours &nbsp; 𓏏</p>
+      <h2>Awards, Grants &amp; Residencies</h2>
+    </div>
+
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-icon">🏛</div>
+        <p class="award-name">Terra Firma Printmaking Residency</p>
+        <p class="award-date">2026 &nbsp;·&nbsp; Netherlands &nbsp;(Forthcoming)</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🌎</div>
+        <p class="award-name">Funded Residency — Mexico City</p>
+        <p class="award-date">2026 &nbsp;·&nbsp; Revolu Gallery</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">✈</div>
+        <p class="award-name">UCF Travel Award for Recognition of Faculty Excellence (TARFE)</p>
+        <p class="award-date">2025 &nbsp;·&nbsp; December</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">💰</div>
+        <p class="award-name">United Arts Individual Artist Grant</p>
+        <p class="award-date">2025 &nbsp;·&nbsp; September</p>
+        <span class="award-amount">$5,000</span>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎨</div>
+        <p class="award-name">Corridor Art Trail Public Art Award</p>
+        <p class="award-date">2025 &nbsp;·&nbsp; July</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🏆</div>
+        <p class="award-name">Florida Prize — People's Choice Award</p>
+        <p class="award-date">2024 &nbsp;·&nbsp; Orlando Museum of Art</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎓</div>
+        <p class="award-name">Award for Excellence by a Graduate Student Researcher</p>
+        <p class="award-date">2024 &nbsp;·&nbsp; University of Central Florida</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">⭐</div>
+        <p class="award-name">University Award for Outstanding Graduate Creative Work</p>
+        <p class="award-date">2024 &nbsp;·&nbsp; University of Central Florida</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🌟</div>
+        <p class="award-name">Walt Disney City Arts Impact Grant</p>
+        <p class="award-date">2023 &nbsp;·&nbsp; July</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎭</div>
+        <p class="award-name">Éclat Law Art Prize</p>
+        <p class="award-date">2023 &nbsp;·&nbsp; Éclat Law Firm, Altamonte, FL</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🔬</div>
+        <p class="award-name">3MT (3-Minute Thesis) Finalist</p>
+        <p class="award-date">2023 &nbsp;·&nbsp; University of Central Florida</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📜</div>
+        <p class="award-name">Provost's Fellowship Award</p>
+        <p class="award-date">2021 &nbsp;·&nbsp; Fall 2021 – Spring 2023</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── TALKS ─────────────────────────────────────────────────── -->
+<div id="talks" class="section-full section-bg-alt">
+  <div class="section">
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓃭 &nbsp; Discourse &nbsp; 𓃭</p>
+      <h2>Talks, Lectures &amp; Workshops</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="talk-item">
+        <span class="talk-date">2026</span>
+        <span class="talk-desc">Judge, Melbourne Annual Art Festival &nbsp;·&nbsp; <em>Melbourne, FL, April</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2026</span>
+        <span class="talk-desc">Judge, Tallahassee Annual Art Festival &nbsp;·&nbsp; <em>April</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2026</span>
+        <span class="talk-desc">Judge, Winter Park Art Festival Schools Exhibit &nbsp;·&nbsp; <em>March, FL</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2026</span>
+        <span class="talk-desc">Artist Talk, Lolita Pank &nbsp;·&nbsp; <em>Mexico City, February</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">Artist Talk, Arts Centre Sarasota &nbsp;·&nbsp; <em>October</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">Nature Meet Pattern Collage Workshop, Art and History Museums Maitland &nbsp;·&nbsp; <em>July</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">Artist Panel Discussion, Albin Polasek Museum &nbsp;·&nbsp; <em>June</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">Public Lecture, Florida Free Thought Community &nbsp;·&nbsp; <em>Winter Park, April</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">Collage Workshop, Orlando Museum of Art &nbsp;·&nbsp; <em>March</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">High School Portfolio Review, Orlando Museum of Art &nbsp;·&nbsp; <em>February</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">WCA Artist Talk and Workshop, Gutstein Gallery, SCAD &nbsp;·&nbsp; <em>Savannah, GA, July</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2025</span>
+        <span class="talk-desc">FATE Annual Conference, Gillespie Gallery, George Mason University &nbsp;·&nbsp; <em>VA, April</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2024</span>
+        <span class="talk-desc">Florida Prize in Contemporary Art Artist Talk, Orlando Museum of Art &nbsp;·&nbsp; <em>August</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2024</span>
+        <span class="talk-desc">Creative Mornings Speaker &nbsp;·&nbsp; <em>Orlando, FL, June</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2024</span>
+        <span class="talk-desc">Women's Caucus for Art (WCA) Annual Conference &nbsp;·&nbsp; <em>Rockville, MD, June</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2023</span>
+        <span class="talk-desc">3MT (3-Minute Thesis) Competition, University of Central Florida &nbsp;·&nbsp; <em>November</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2023</span>
+        <span class="talk-desc">Artist Talk, Éclat Gallery, Altamonte &nbsp;·&nbsp; <em>August</em></span>
+      </div>
+      <div class="talk-item">
+        <span class="talk-date">2019</span>
+        <span class="talk-desc">Dancing Savannah, African Art and Dance Festival — Organization &amp; Participation &nbsp;·&nbsp; <em>July</em></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── PRESS ──────────────────────────────────────────────────── -->
+<div id="press" class="section-full">
+  <div class="section">
+    <div class="section-heading reveal">
+      <p class="eyebrow">𓆃 &nbsp; Writings &nbsp; 𓆃</p>
+      <h2>Selected Press &amp; Bibliography</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="bib-item">
+        <span class="bib-year">2025</span>
+        <span class="bib-text">Pat Green, <em>'Pat Greene Wants You to Visit the Albin Polasek Museum and Sculpture Gardens,'</em> Bungalower, Orlando, FL &nbsp;·&nbsp; May</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2025</span>
+        <span class="bib-text">Albin Polasek Museum, <em>"Art Proclaims, I am Free,"</em> Artistry Magazine &nbsp;·&nbsp; May</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2025</span>
+        <span class="bib-text">Zeny May Recidoro, <em>"Ukombozi: Reclaiming Place and Self at the Dale Mabry Gallery, Tampa,"</em> Burnaway Magazine &nbsp;·&nbsp; March</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2025</span>
+        <span class="bib-text">Maggie Duffy, <em>"Larger than Life,"</em> Bay Magazine by Tampa Bay Times, pg 26–27 &nbsp;·&nbsp; March</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2025</span>
+        <span class="bib-text">Luis Ringual, <em>"The Textile Poet: Material Witness,"</em> Florida Design Magazine, pg 106 &nbsp;·&nbsp; December</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">David Dumke, <em>"Global Perspectives,"</em> PBS WUCF-TV Interview &nbsp;·&nbsp; December</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">Kyle Eagle, <em>"Best Feel-Good Moment: Njeri Kinuthia wins People's Choice Award in OMA's Florida Prize,"</em> Orlando Weekly Best of Orlando &nbsp;·&nbsp; August</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">Kyle Eagle, <em>"Local Artist Njeri Kinuthia Takes the People's Choice Award in Orlando Museum of Art's Annual Prize Exhibition,"</em> Orlando Weekly (Cover) &nbsp;·&nbsp; July</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">Jamaal Barber, <em>"Njeri the Great with Artist Njeri Kinuthia,"</em> Studio Noize Podcast, Spotify &nbsp;·&nbsp; June</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">Patrick Connoly, <em>"Orlando Museum of Art Names Florida Prize Winner from 10 Artists Showcasing Diversity in the Sunshine State,"</em> Orlando Sentinel &nbsp;·&nbsp; May</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2024</span>
+        <span class="bib-text">Mila Chial, <em>"Graduating Kenyan Artist Uses Work to Advocate for Change,"</em> UCF Today &nbsp;·&nbsp; April</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2023</span>
+        <span class="bib-text">Myshala Liddick, <em>"Graduate Student Njeri Kinuthia Receives $5,000 from the 2023 Éclat Law Prize,"</em> CAH News</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2019</span>
+        <span class="bib-text">Good Morning Kenya, Kenya Broadcasting Corporation (KBC) &nbsp;·&nbsp; February</span>
+      </div>
+      <div class="bib-item">
+        <span class="bib-year">2018</span>
+        <span class="bib-text"><em>"God Helg, Safari ya Sanaa Exhibition,"</em> Norwegian Newspaper Jaebladet &nbsp;·&nbsp; July</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── COMMUNITY ─────────────────────────────────────────────── -->
+<div class="section-full section-bg-alt">
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-heading reveal" style="text-align:left; margin-bottom:1.5rem;">
+          <p class="eyebrow">𓊃 &nbsp; Community</p>
+          <h2 style="font-size:1.6rem;">Memberships</h2>
+        </div>
+        <div class="tags-list reveal">
+          <span class="tag">FATE Association</span>
+          <span class="tag">Women's Caucus for Art — Florida</span>
+          <span class="tag">Women's Caucus for Art — National</span>
+          <span class="tag">Young Women's Caucus</span>
+          <span class="tag">Council of 101, Orlando Museum of Art</span>
+        </div>
+
+        <div class="glyph-divider reveal" style="margin:2rem 0"><span>𓂋</span></div>
+
+        <div class="section-heading reveal" style="text-align:left; margin-bottom:1.5rem;">
+          <p class="eyebrow">𓏏 &nbsp; Commissions</p>
+          <h2 style="font-size:1.6rem;">Notable Commissions</h2>
+        </div>
+        <div class="notable-grid reveal">
+          <div class="notable-card">
+            <p class="notable-label">Public Installation</p>
+            United Arts of Central Florida, Orlando, FL
+          </div>
+          <div class="notable-card">
+            <p class="notable-label">Mural</p>
+            Mountain View School, Kenya
+          </div>
+          <div class="notable-card">
+            <p class="notable-label">Mural</p>
+            Aubrey Newman's Academy, Kenya
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-heading reveal" style="text-align:left; margin-bottom:1.5rem;">
+          <p class="eyebrow">𓇯 &nbsp; Collections</p>
+          <h2 style="font-size:1.6rem;">Notable Collections</h2>
+        </div>
+        <div class="notable-grid reveal">
+          <div class="notable-card">
+            <p class="notable-label">Kenya</p>
+            Marini Naturals Haircare Company
+          </div>
+          <div class="notable-card">
+            <p class="notable-label">Norway</p>
+            ManGo Development
+          </div>
+        </div>
+
+        <div class="glyph-divider reveal" style="margin:2rem 0"><span>𓂋</span></div>
+
+        <div class="section-heading reveal" style="text-align:left; margin-bottom:1.5rem;">
+          <p class="eyebrow">𓃭 &nbsp; Service</p>
+          <h2 style="font-size:1.6rem;">Volunteer Work</h2>
+        </div>
+        <ul class="volunteer-list reveal">
+          <li>
+            <span class="vol-date">2025</span><br>
+            Wings of Peace International with the Women's Caucus for Art
+          </li>
+          <li>
+            <span class="vol-date">2024 – Present</span><br>
+            Council 101, Orlando Museum of Art — Fundraising and museum support
+          </li>
+          <li>
+            <span class="vol-date">2017 – 2020</span><br>
+            Immanuel Afrika Children's Home — Teaching art to underprivileged children, Kenya
+          </li>
+          <li>
+            <span class="vol-date">2017 – 2019</span><br>
+            Muthama Charity School, the Hadassah Project — Teaching art to children, Kenya
+          </li>
+          <li>
+            <span class="vol-date">2017 – 2019</span><br>
+            Kids Art Programs Organizer, ManGo Organization, Nairobi and Mombasa, Kenya
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hiero-border"></div>
+
+<!-- ─── CONTACT ───────────────────────────────────────────────── -->
+<div id="contact">
+  <div class="section-heading reveal">
+    <p class="eyebrow">𓅓 &nbsp; Connect &nbsp; 𓅓</p>
+    <h2 style="font-size: clamp(1.8rem, 5vw, 3rem);">Get in Touch</h2>
+    <p class="subtitle" style="margin-top:.8rem;">Orlando, FL &nbsp;·&nbsp; Open to collaborations, commissions &amp; exhibitions</p>
+  </div>
+
+  <div class="contact-links reveal">
+    <a href="mailto:njerikinuthia@ucf.edu" class="contact-link">Email</a>
+    <a href="https://njerikinuthia.com" class="contact-link" target="_blank" rel="noopener">Website</a>
+    <a href="tel:+16319661321" class="contact-link">Phone</a>
+  </div>
+</div>
+
+<footer>
+  𓂀 &nbsp; Njeri Kinuthia &nbsp; · &nbsp; Artist &amp; Educator &nbsp; · &nbsp; Orlando, FL &nbsp; 𓂀
+</footer>
+
+<!-- ─── JS ────────────────────────────────────────────────────── -->
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
